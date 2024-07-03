@@ -1,0 +1,25 @@
+create table customer(cust_novarchar(5),cust_name varchar(15),age
+int,phone varchar(10));
+
+
+insert into customer values(100,'amal',18,'1234567890');
+insert into customer values(101,'kavya',19,'2345678901');
+insert into customer values(102,'jwala',20,'3456789012');
+insert into customer values(103,'abay',20,'4567890123');
+insert into customer values(104,'abhi',19,'5678901234');
+
+select * from customer;
+
+alter table customer add d_birth date;
+
+create table cust_phone as(select cust_name,phone from customer);
+
+alter table customer drop column age;
+
+alter table customer alter column cust_name type varchar(25);
+
+delete from customer;
+
+alter table customer rename to cust;
+
+drop table cust;

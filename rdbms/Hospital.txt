@@ -1,0 +1,26 @@
+Create a table Hospital with the field(doctorid, doctorname, department,
+qualification, experience).
+create table hospital(doctored varchar(15) primary key,doctorname
+varchar(30),department varchar(25),qualification varchar(30),experience
+int);
+Write the queries to perform the following.
+a) Insert 5 records.
+ insert into hospital values(‘103’.’riya’,’ENT’,’MS’,2);
+ insert into hospital values(‘105’.’sachind’,’cardiac’,’MD’,3);
+ insert into hospital values(‘107’.’maxwell’,’ortho’,’MD’,1);
+ insert into hospital values(‘102’.’sharun’,’onco’,’MS’,6);
+ insert into hospital values(‘104’.’harshal’,’dental’,’BDS’,2);
+b) Display the details of Doctors.
+select doctorname,deparment from hospital;
+c) Display the details of doctors who have the qualification ‘MD’.
+ select doctorname from hospital where qualification=’MD’;
+d) Display all doctors who have more than 5 years experience but do not
+have the qualification ‘MD’.
+ select doctorname from hospital where qualification!=’MD’ and
+experience>5;
+e) Display the doctors in ‘Skin’ department.
+ select doctorname from hospital where department=’skin’;
+f) update the experience of doctor with doctored=’D003’ to 5.
+ update hospital set experience = 5 where doctored=’D003’;
+g) Delete the doctor with DoctorID=’D005’.
+ delete from hospital where doctored=’D005’;

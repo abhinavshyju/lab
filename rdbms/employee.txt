@@ -1,0 +1,31 @@
+Create a table employee with fields (EmpID, EName, Salary, Department,
+and Age). Insert some records. Write SQL queries using aggregate
+functions and group by clause.
+create table employee(empid varchar(3) primary key,ename
+varchar(25),salary int,dept varchar(55),age int);
+insert into employee values(103,’arun’,8000,’purchase’,18);
+insert into employee values(107,’jithin’,7800,’purchase’,18);
+insert into employee values(105,’anupama’,8300,’purchase’,19);
+insert into employee values(213,’abay’,11000,’stock’,26);
+insert into employee values(237,’akhil’,10800,’stock’,24);
+A. Display the total number of employees.
+ select from employee count(ename);
+B. Display the name and age of the oldest employee of each department.
+ select dept,max(age) as maximum_age from employee group by
+dept;
+C. Display the average age of employees of each department.
+ select dept,avg(age) as average_age from employee group by dept;
+ D. Display departments and the average salaries.
+
+ select dept,avg(salary) as average_salary from employee group by
+dept;
+E. Display the lowest salary in employee table.
+ select min(salary) as minimum_salary from employee;
+F. Display the number of employees working in purchase department.
+ select count(ename) as number_of_employees from employee where
+dept=’purchase’;
+G. Display the highest salary in sales department.
+select max(salary) as highest_salary from employee where
+dept=’sales’;
+H. Display the difference between highest and lowest salary.
+select max(salary) – min(salary) salary deference from employee;

@@ -1,0 +1,15 @@
+create table bill(cons_no int primary key, units int,amount float);
+create or replace function elebill(int,int) retruns void
+language plpgsql
+as $$
+declare
+cons_no alias for $1;
+units alias for $2;
+amount float;
+begin
+amount:=units*6.40;
+insert into bill values(cons_no,units,amount);
+end;
+$$;
+select elebill(123,216);
+select * from bill;

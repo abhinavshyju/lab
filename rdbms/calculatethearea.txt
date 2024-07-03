@@ -1,0 +1,18 @@
+create table areas(radius int,area int);
+create or replace function calarea() returns void
+language plpgsql
+as $$
+declare
+read int:=3;
+area int;
+begin
+loop
+area:=3.14*read*read;
+insert into areas values(read,area);
+read:=read+1;
+exit when read > 7;
+end loop;
+end;
+$$;
+select calarea();
+select * from areas;

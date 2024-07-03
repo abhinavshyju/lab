@@ -1,0 +1,20 @@
+create or replace function fibo(int) returns text
+langaue plpgsql
+as $$
+declare
+a int:=0;
+b int:=1;
+c int;
+n alias for $1;
+begin
+raise notice ‘The fibonacci series is….’;
+while a<=n
+loop
+raise notice ‘%’,a;
+c:=a+b;
+a:=b;
+b:=c;
+end loop;
+end;
+$$;
+select fibo(15);

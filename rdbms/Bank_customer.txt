@@ -1,0 +1,42 @@
+Create the following tables Bank_customer (accno primary key,
+cust_name, place). Deposit (accno foreign key, deposit_no, damount).
+Loan (accno foreign key loan_no, Lamount).
+create table bank_customer(accno varchar(3) primary key,cname
+varchar(20),place varchar(20));
+insert into bank_customer(103,’shithin’,’thmsy’);
+insert into bank_customer(102,’vyshakh’,’koyilandy’);
+insert into bank_customer(101,’vismaya’,’mukkam’);
+insert into bank_customer(104,’aswin’,’areekode’);
+insert into bank_customer(105,’anand’,’manjeri’);
+create table deposit(accno varchar(3),deposit_no varchar(3),d_amoun tint,
+foreign key(accno) references bank_customer(accno));
+insert into deposit values(103,524,25000);
+insert into deposit values(106,525,30000);
+insert into deposit values(107,527,18000);
+insert into deposit values(104,526,45000);
+create table loan(accno varchar(3),loan_no varchar(3),l_amoun tint,foreign
+key(accno) references bank_customer(accno));
+insert into loan values(107,641,37000);
+insert into loan values(102,642,28000);
+insert into loan values(105,643,32000);
+insert into loan values(101,644,29000);
+insert into loan values(105,645,43000);
+Write the following queries.
+a) Display the details of the customers.
+ select * from bank_customer;
+ b) Display the customers along with deposit amount who have only
+deposit with the bank.
+ select cname,d_amount from bank_customer,deposit where
+bank_customer.accno=deposit.accno;
+c) Display the customers along with loan amount who have only loan
+with the bank.
+ select cname,l_amount from bank_customer,loan where
+bank_customer.accno=loan.accno;
+d) Display the customers they have both loan and deposit with the bank.
+ select cname from bank_customer,deposit,loan where
+bank_customer.accno=load.accno and
+bank_customer.accno=deposit.accno;
+e) Display the customer who have neither a loan nor a deposit with the
+bank.
+ select * from bank_customer where accno not in(select accno from
+deposit union select accno from loan);

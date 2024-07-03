@@ -1,0 +1,25 @@
+create table result(rollno int primary key,avgscore float,grade varchar(10));
+ insert into result values(100,98.5,'null');
+ insert into result values(101,50,'null');
+ insert into result values(102,70.6,'null');
+ insert into result values(103,80,'null');
+ insert into result values(104,88.5,'null');
+ insert into result values(105,94,'null');
+ insert into result values(106,98,'null');
+ insert into result values(107,56,'null');
+ insert into result values(108,65,'null');
+ insert into result values(109,63,'null');insert into result values(110,30,'null');
+CREATE OR REPLACE FUNCTION UPRESULT() RETURNS VOID AS
+'
+DECLARE
+BEGIN
+UPDATE RESULT SET GRADE=''A''WHERE AVGSCORE>=90 AND AVGSCORE<=100;
+UPDATE RESULT SET GRADE=''B''WHERE AVGSCORE>=75 AND AVGSCORE<=89;
+UPDATE RESULT SET GRADE=''C''WHERE AVGSCORE>=60 AND AVGSCORE<=74;
+UPDATE RESULT SET GRADE=''D''WHERE AVGSCORE>=50 AND AVGSCORE<=59;
+UPDATE RESULT SET GRADE=''E''WHERE AVGSCORE<50;
+END;
+'language'plpgsql';
+ SELECT * FROM RESULT;
+ SELECT UPRESULT();
+ SELECT * FROM RESULT;

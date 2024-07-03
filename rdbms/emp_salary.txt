@@ -1,0 +1,21 @@
+create table emp_salary(empnoint primary key,ename varchar(25),dept
+varchar(25),salary int);
+insert into emp_salary values(100,'riya','sales',10000);
+insert into emp_salary values(101,'yadu','sales',13000);
+insert into emp_salary values(103,'jithin','production',15000);
+insert into emp_salary values(104,'vismaya','production',20000);
+insert into emp_salary values(102,'neeraj','hr',18000);
+create or replace function avgsal(varchar) returns int
+language plpgsql
+as $$
+declare
+dname alias for $1;
+avgs int:=0;
+begin
+select avg(salary) into avgs from emp_salary where dept=dname;
+return avgs;
+end;
+$$;
+select avgsal('sales');
+select avgsal('production');
+select avgsal('hr');

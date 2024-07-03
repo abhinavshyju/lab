@@ -1,0 +1,32 @@
+create table sales_man(salesman_novarchar(5) primary key,s_name
+varchar(25) not null,place varchar(30),phone varchar(10) unique);
+
+create table sales_order(order_no varchar(5) primary key,order_date date
+not null,salesman_no varchar(5),del_type char check(del_type
+in('P','F')),order_status varchar(15) check(order_status
+in('Inprocess','Fulfilled','Backorder','Cancelled')),foreign key(salesman_no)
+references sales_man(salesman_no));
+
+a) Insert few records in both tables.
+insert into sales_man values(100,'abay','thamarassery','1234567890');
+insert into sales_man values(101,'riya','mukkam','2345678901');
+insert into sales_man values(102,'aswin','areekode','3456789012');
+insert into sales_man values(103,'harshal','kozhikode','4567890123');
+insert into sales_order values(200,'08-02-2021',100,'P','Fulfilled');
+insert into sales_order values(201,'07-02-2021',101,'F','Cancelled');
+insert into sales_order values(202,'08-12-2021',102,'F','Backorder');
+b) Delete primary key from sales_man table.
+alter table sales_man drop constraint sales_manpkey cascade;
+c) Delete Foreign key and Check constraints from sales_order table.
+alter table saes_order drop constraint fk_salesman;
+alter table sales_order drop constraint check_order_status;
+alter table sales_order drop constraint check_del_type;
+d) Add primary key in sales_man using ALTER TABLE.
+alter table sales_man add constraint pk_sales_man primary key
+s_name;
+e) Add foreign key and CHECK constraints in sales_order table using
+ALTER TABLE.
+alter table sales_order add constraint fk_salesman foreign
+key(salesman_no) references sales_man(salesman_no);
+alter table sales_order add constraint check_del_type(check(del_type
+in (‘P’,’F’));

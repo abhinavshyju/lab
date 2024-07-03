@@ -1,0 +1,47 @@
+Consider the employee database given below. Give an expression in SQL
+for each of the following queries:
+EMPLOYEE (Employee-Name, City).
+create table employee(employee_name varchar(20),city varchar(20));
+insert into employee values(‘anupama’,’cochin’);
+insert into employee values(‘gayathri’,’pune’);
+insert into employee values(‘nubla’,’benguluru’);
+WORKS (Employee-Name, Company-Name, Salary).
+create table works(employee_name varchar(20),company_name
+varchar(30),salary int);
+insert into works values(‘anupama’,’wipro’,15000);
+insert into works values(‘gayathri’,’infosys’,25000);
+insert into works values(‘nubla’,’wipro’,22000);
+COMPANY (Company-Name, City).
+create table company(company_name varchar(30),city varchar(20));
+insert into company values(‘wipro’,’benguluru’);
+insert into company values(‘infosys’,’benguluru’);
+MANAGES (Employee-Name, Manager-Name).
+create table manages(employee_name varchar(20),manager_name
+varchar(20));
+insert into manages values(‘anupama’,’diya’);
+insert into manages values(‘gayathri’,’yadu’);
+insert into manages values(‘nubla’,’noorbina’);
+A) Find the names of all employees who work in Infosys.
+select employee_name from works where company_name=’infosys’.
+B) Find the names and cities of residence of all employees who works in
+Wipro
+select employee.employee_name,employee.city from employee,works
+where employee.employee_name=works.employee_name and
+works.company_name=’wipro’;
+C) Find the names, and cities of all employees who work in Infosys and
+earn more than Rs. 10,000.
+select employee.employee_name,employee.city from employee,works
+where employee.employee_name=works.employee_name and
+works.company_name=’infosys’ and salary > 10000;
+D) Find the employees who live in the same cities as the companies for
+which they work.
+select employee.employee_name from employee,works,company
+where company.company.company_name=works.company_name and
+works.employee_name=employee.employee_name and
+company_city=employee.city;
+E) Find all employees who do not work in Wipro Corporation.
+select * from works where company_name not in(‘wipro’);
+F) Find the company that has the most employees.
+select company_name from works group by company_name having
+count(distinct employee_name) > = all(select count(distinct
+employee_name) from works group by company_name);

@@ -1,0 +1,26 @@
+create or replace function prime(int) returns text
+language plpgsql
+as $$
+declare
+n alias for $1;
+i int:=2;
+counterint:=1;
+msg text;
+begin
+for i in 2..n/2 loop
+if mod(n,i)=0 then
+counter:=0;
+exit;
+end if;
+end loop;
+if counter = 1 then
+msg:=n||' is a prime number';
+else
+msg:=n||' is not a prime number';
+end if;
+return msg;
+end;
+$$;
+select prime(31);
+select prime(5);
+select prime(4);
